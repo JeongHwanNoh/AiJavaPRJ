@@ -23,7 +23,7 @@ public class AiJavaPrjApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        log.info("자바 프로그래밍 시작!!");
+        log.info("자바 프로그래밍 시작!");
 
         String filePath = "image";
         String fileName = "sample03.png";
