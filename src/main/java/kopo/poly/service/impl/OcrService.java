@@ -22,7 +22,7 @@ public class OcrService implements IOcrService {
 
         instance.setDatapath(IOcrService.modolFile);
 
-        instance.setLanguage("jpn");
+        instance.setLanguage("kor");
 
         String result = instance.doOCR(resource.getFile());
 
