@@ -35,8 +35,7 @@ public class StudentService implements IStudentService {
         List<StudentDTO> rList = Optional.ofNullable(
                 StudentMapper.getStudentList()).orElseGet(ArrayList::new);
         return rList;
-        }
-
+    }
 
     /*@Override
     public List<StudentDTO> updateStudent(StudentDTO pDTO) throws Exception {

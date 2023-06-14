@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -52,7 +53,28 @@ public class AiJavaPrjApplication implements CommandLineRunner {
             log.info("DB에 저장된 주소 : " + dto.getAddr());
         });
 
-        pDTO = new StudentDTO();
+        List<StudentDTO> sList = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++)     {
+            StudentDTO myDTO = new StudentDTO();
+
+            myDTO.setUserId(String.valueOf(i));
+            myDTO.setUserName(String.valueOf(i));
+            myDTO.setEmail(String.valueOf(i));
+            myDTO.setAddr(String.valueOf(i));
+
+            sList.add(myDTO);
+            myDTO = null;
+        }
+
+        sList.parallelStream().forEach(dto -> { try {
+            studentService.insertStudent(dto); }
+        catch (Exception e) { throw new RuntimeException(e);
+        }
+    });
+
+
+        /*pDTO = new StudentDTO();
 
         pDTO.setUserId("hglee67");
         pDTO.setUserName("이협건_수정");
@@ -79,7 +101,7 @@ public class AiJavaPrjApplication implements CommandLineRunner {
             log.info("DB에 저장된 이름 : " + dto.getUserName());
             log.info("DB에 저장된 이메일 : " + dto.getEmail());
             log.info("DB에 저장된 주소 : " + dto.getAddr());
-        });
+        });*/
 
         /*String filePath = "image";
         String fileName = "news01.jpg";
