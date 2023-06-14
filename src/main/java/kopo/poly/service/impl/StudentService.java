@@ -16,10 +16,12 @@ import java.util.Optional;
 @Service
 public class StudentService implements IStudentService {
     private final IStudentMapper StudentMapper;
+
+
     @Override
     public List<StudentDTO> insertStudent(StudentDTO pDTO) throws Exception {
 
-        log.info(this.getClass().getName() + ".insertStudent Start!");
+        log.info(this.getClass().getName() + ".Student Start!");
 
         Optional<StudentDTO> res = Optional.ofNullable(
                 StudentMapper.getStudent(pDTO)
@@ -29,13 +31,49 @@ public class StudentService implements IStudentService {
             StudentMapper.insertStudent(pDTO);
         }
 
+        log.info(this.getClass().getName() + ".Student End!");
         List<StudentDTO> rList = Optional.ofNullable(
-                StudentMapper.getStudentList()
-        ).orElseGet(ArrayList::new);
+                StudentMapper.getStudentList()).orElseGet(ArrayList::new);
+        return rList;
+        }
 
-        log.info(this.getClass().getName() + ".insertStudent End!");
+
+    /*@Override
+    public List<StudentDTO> updateStudent(StudentDTO pDTO) throws Exception {
+
+        log.info(this.getClass().getName() + ".updateStudent Start!");
+
+        Optional<StudentDTO> res = Optional.ofNullable(StudentMapper.getStudent(pDTO));
+        if (res.isPresent()) {
+            StudentMapper.updateStudent(pDTO);
+            log.info(pDTO.getUserId() + "님이 수정되었습니다.");
+
+        } else {
+            log.info("회원이 존재하지 않아 수정되지 못했습니다.");
+        }
+        List<StudentDTO> rList = Optional.ofNullable(
+                StudentMapper.getStudentList()).orElseGet(ArrayList::new);
 
         return rList;
-
     }
-}
+
+    @Override
+    public List<StudentDTO> deleteStudent(StudentDTO pDTO) throws Exception {
+
+        log.info(this.getClass().getName() + ".updateStudent Start!");
+        Optional<StudentDTO> res = Optional.ofNullable(StudentMapper.getStudent(pDTO));
+
+        if (res.isPresent()) {
+            StudentMapper.deleteStudent(pDTO);
+            log.info(pDTO.getUserId() + "님이 삭제되었습니다.");
+
+        } else {
+            log.info("회원이 존재하지 않아 삭제되지 못했습니다.");
+        }
+
+        List<StudentDTO> rList = Optional.ofNullable(
+                StudentMapper.getStudentList()).orElseGet(ArrayList::new);
+
+        return rList;*/
+    }
+

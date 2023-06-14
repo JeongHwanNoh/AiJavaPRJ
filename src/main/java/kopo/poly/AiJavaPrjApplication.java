@@ -27,6 +27,7 @@ public class AiJavaPrjApplication implements CommandLineRunner {
 
         SpringApplication.run(AiJavaPrjApplication.class, args);
     }
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -49,7 +50,36 @@ public class AiJavaPrjApplication implements CommandLineRunner {
             log.info("DB에 저장된 이름 : " + dto.getUserName());
             log.info("DB에 저장된 이메일 : " + dto.getEmail());
             log.info("DB에 저장된 주소 : " + dto.getAddr());
-                });
+        });
+
+        pDTO = new StudentDTO();
+
+        pDTO.setUserId("hglee67");
+        pDTO.setUserName("이협건_수정");
+        pDTO.setEmail("hglee67@kopo.ac.kr_수정");
+        pDTO.setAddr("서울_수정");
+
+        rList = studentService.updateStudent(pDTO);
+
+        rList.forEach(dto -> {
+            log.info("DB에 저장된 아이디 : " + dto.getUserId());
+            log.info("DB에 저장된 이름 : " + dto.getUserName());
+            log.info("DB에 저장된 이메일 : " + dto.getEmail());
+            log.info("DB에 저장된 주소 : " + dto.getAddr());
+        });
+
+        pDTO = new StudentDTO();
+
+        pDTO.setUserId("hylee67");
+
+        rList = studentService.deleteStudent(pDTO);
+
+        rList.forEach(dto -> {
+            log.info("DB에 저장된 아이디 : " + dto.getUserId());
+            log.info("DB에 저장된 이름 : " + dto.getUserName());
+            log.info("DB에 저장된 이메일 : " + dto.getEmail());
+            log.info("DB에 저장된 주소 : " + dto.getAddr());
+        });
 
         /*String filePath = "image";
         String fileName = "news01.jpg";
